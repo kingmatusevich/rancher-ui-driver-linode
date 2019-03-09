@@ -112,7 +112,7 @@ actions: {
           gettingData: false,
           regionChoices: responses[0].data.map(region => { region.label = region.id.slice(0,4).toUpperCase() + region.id.slice(4) + " (" + region.country.toUpperCase() + ")";  return region }).sort((a,b)=>String.prototype.localeCompare(a,b)),
           imageChoices: responses[1].data.filter(image => /^linode.(ubuntu18.04|ubuntu16.04|debian9)/.test(image.id)),
-          sizeChoices: responses[2].data.filter(size => !/nanode/.test(size.id)).map(image => { image.disk/=1024; image.memory/=1024; return image } ),
+          sizeChoices: responses[2].data.map(image => { image.disk/=1024; image.memory/=1024; return image } ),
         })
       }).catch(function (err) {
           err.then(function (msg) {
